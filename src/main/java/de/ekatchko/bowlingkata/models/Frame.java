@@ -3,7 +3,7 @@ package de.ekatchko.bowlingkata.models;
 import java.util.HashSet;
 
 public class Frame {
-    private static final HashSet<Character> allowedRolls = new HashSet<Character>();
+    private static final HashSet<Character> allowedRolls = new HashSet<>();
 
     static{
         allowedRolls.add('1');
@@ -20,7 +20,7 @@ public class Frame {
         allowedRolls.add('-');
     }
 
-    private char[] rolls;
+    private final char[] rolls;
 
     public Frame(String rolls) {
         this.rolls = new char[rolls.length()];
@@ -31,5 +31,9 @@ public class Frame {
                 this.rolls[i] = '-';
             }
         }
+    }
+
+    public char[] getRolls() {
+        return this.rolls;
     }
 }
