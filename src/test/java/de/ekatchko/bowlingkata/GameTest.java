@@ -3,9 +3,12 @@ package de.ekatchko.bowlingkata;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import de.ekatchko.bowlingkata.models.BowlingGame;
+import de.ekatchko.bowlingkata.models.Frame;
+
+import java.util.ArrayList;
 
 public class GameTest {
     private BowlingGame bowlingGame;
@@ -16,7 +19,7 @@ public class GameTest {
         bowlingGame = new BowlingGame();
         String framesString = "-- -- -- -- -- -- -- -- -- ---";
         bowlingGame.addFrames(framesString);
-        ArrayList<Frames> frames = bowlingGame.getFrames();
+        ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames.size()).isEqualTo(10);
     }
@@ -27,7 +30,7 @@ public class GameTest {
         bowlingGame = new BowlingGame();
         String framesString = "-- -- -- -- --";
         bowlingGame.addFrames(framesString);
-        ArrayList<Frames> frames = bowlingGame.getFrames();
+        ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames.size()).isEqualTo(5);
     }
@@ -38,9 +41,9 @@ public class GameTest {
         bowlingGame = new BowlingGame();
         String framesString = "-- -- -- -- --";
         bowlingGame.addFrames(framesString);
-        String framesString = "-- -- -- -- ---";
+        framesString = "-- -- -- -- ---";
         bowlingGame.addFrames(framesString);
-        ArrayList<Frames> frames = bowlingGame.getFrames();
+        ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames.size()).isEqualTo(10);
     }
