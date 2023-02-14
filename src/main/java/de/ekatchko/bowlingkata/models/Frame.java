@@ -20,20 +20,25 @@ public class Frame {
         allowedRolls.add('-');
     }
 
-    private final char[] rolls;
+    private final Roll[] rolls;
 
     public Frame(String rolls) {
-        this.rolls = new char[rolls.length()];
+        this.rolls = new Roll[rolls.length()];
         for (int i = 0; i < rolls.length(); i++) {
             if (allowedRolls.contains(rolls.charAt(i))) {
-                this.rolls[i] = rolls.charAt(i);
+                switch (rolls.charAt(i)) {
+                    case 'X' -> this.rolls[i] = new Roll(10, 'X');
+                    case '/' -> this.rolls[i] = new Roll((10 - this.rolls[i-1].value()), '/');
+                    case '-' -> this.rolls[i] = new Roll(0, '-');
+                    default -> this.rolls[i] = new Roll(Character.getNumericValue(rolls.charAt(i)), rolls.charAt(i));
+                }
             } else {
-                this.rolls[i] = '-';
+                this.rolls[i] = new Roll(0, '-');
             }
         }
     }
 
-    public char[] getRolls() {
+    public Roll[] getRolls() {
         return this.rolls;
     }
 }

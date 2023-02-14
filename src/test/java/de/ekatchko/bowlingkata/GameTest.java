@@ -1,5 +1,6 @@
 package de.ekatchko.bowlingkata;
 
+import de.ekatchko.bowlingkata.models.Roll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,16 +60,36 @@ public class GameTest {
         ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames).satisfiesExactly(
-                frame1 -> assertThat(frame1.getRolls()).isEqualTo(new char[]{'-', '2'}),
-                frame2 -> assertThat(frame2.getRolls()).isEqualTo(new char[]{'3', '4'}),
-                frame3 -> assertThat(frame3.getRolls()).isEqualTo(new char[]{'5', '/'}),
-                frame4 -> assertThat(frame4.getRolls()).isEqualTo(new char[]{'X'}),
-                frame5 -> assertThat(frame5.getRolls()).isEqualTo(new char[]{'6', '-'}),
-                frame6 -> assertThat(frame6.getRolls()).isEqualTo(new char[]{'-', '7'}),
-                frame7 -> assertThat(frame7.getRolls()).isEqualTo(new char[]{'8', '/'}),
-                frame8 -> assertThat(frame8.getRolls()).isEqualTo(new char[]{'9', '/'}),
-                frame9 -> assertThat(frame9.getRolls()).isEqualTo(new char[]{'-', '-'}),
-                frame10 -> assertThat(frame10.getRolls()).isEqualTo(new char[]{'X', 'X', '1'})
+                frame1 -> assertThat(frame1.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(0, '-'), new Roll(2, '2')}
+                ),
+                frame2 -> assertThat(frame2.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(3, '3'), new Roll(4, '4')}
+                ),
+                frame3 -> assertThat(frame3.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(5, '5'), new Roll(5, '/')}
+                ),
+                frame4 -> assertThat(frame4.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(10, 'X')}
+                ),
+                frame5 -> assertThat(frame5.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(6, '6'), new Roll(0, '-')}
+                ),
+                frame6 -> assertThat(frame6.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(0, '-'), new Roll(7, '7')}
+                ),
+                frame7 -> assertThat(frame7.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(8, '8'), new Roll(2, '/')}
+                ),
+                frame8 -> assertThat(frame8.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(9, '9'), new Roll(1, '/')}
+                        ),
+                frame9 -> assertThat(frame9.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(0, '-'), new Roll(0, '-')}
+                ),
+                frame10 -> assertThat(frame10.getRolls()).isEqualTo(
+                        new Roll[]{new Roll(10, 'X'), new Roll(10, 'X'), new Roll(1, '1')}
+                )
                 );
     }
 

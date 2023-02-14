@@ -29,30 +29,13 @@ public class BowlingGame {
         this.score = 0;
 
         for (int frameIndex = 0; frameIndex < this.frames.size(); frameIndex++) {
-            char[] rolls = this.frames.get(frameIndex).getRolls();
+            Roll[] rolls = this.frames.get(frameIndex).getRolls();
             for (int rollIndex = 0; rollIndex < rolls.length; rollIndex++) {
-                switch (rolls[rollIndex]) {
-                    case 'X' -> this.computeStrike();
-                    case '/' -> this.computeSpare(rolls, rollIndex);
-                    case '-' -> {}
-                    default -> this.score += Character.getNumericValue(rolls[rollIndex]);
-                }
+                this.score += rolls[rollIndex].value();
             }
         }
 
         return this.getScore();
-    }
-
-    private void computeStrike() {
-        this.score += 10;
-    }
-
-    private void computeSpare(char[] rolls, int rollIndex) {
-        int prevRoll = Character.getNumericValue(rolls[rollIndex - 1]);
-        if (prevRoll < 0) {
-            prevRoll = 0;
-        }
-        this.score += (10 - prevRoll);
     }
 
     public int getScore() {
