@@ -67,10 +67,10 @@ public class GameTest {
                         new Roll[]{new Roll(3, '3'), new Roll(4, '4')}
                 ),
                 frame3 -> assertThat(frame3.getRolls()).isEqualTo(
-                        new Roll[]{new Roll(5, '5'), new Roll(5, '/')}
+                        new Roll[]{new Roll(5, '5'), new Roll(5, '/', false, true)}
                 ),
                 frame4 -> assertThat(frame4.getRolls()).isEqualTo(
-                        new Roll[]{new Roll(10, 'X')}
+                        new Roll[]{new Roll(10, 'X', true, false)}
                 ),
                 frame5 -> assertThat(frame5.getRolls()).isEqualTo(
                         new Roll[]{new Roll(6, '6'), new Roll(0, '-')}
@@ -79,16 +79,20 @@ public class GameTest {
                         new Roll[]{new Roll(0, '-'), new Roll(7, '7')}
                 ),
                 frame7 -> assertThat(frame7.getRolls()).isEqualTo(
-                        new Roll[]{new Roll(8, '8'), new Roll(2, '/')}
+                        new Roll[]{new Roll(8, '8'), new Roll(2, '/', false, true)}
                 ),
                 frame8 -> assertThat(frame8.getRolls()).isEqualTo(
-                        new Roll[]{new Roll(9, '9'), new Roll(1, '/')}
+                        new Roll[]{new Roll(9, '9'), new Roll(1, '/', false, true)}
                         ),
                 frame9 -> assertThat(frame9.getRolls()).isEqualTo(
                         new Roll[]{new Roll(0, '-'), new Roll(0, '-')}
                 ),
                 frame10 -> assertThat(frame10.getRolls()).isEqualTo(
-                        new Roll[]{new Roll(10, 'X'), new Roll(10, 'X'), new Roll(1, '1')}
+                        new Roll[]{
+                                new Roll(10, 'X', true, false),
+                                new Roll(10, 'X', true, false),
+                                new Roll(1, '1')
+                        }
                 )
                 );
     }

@@ -27,8 +27,8 @@ public class Frame {
         for (int i = 0; i < rolls.length(); i++) {
             if (allowedRolls.contains(rolls.charAt(i))) {
                 switch (rolls.charAt(i)) {
-                    case 'X' -> this.rolls[i] = new Roll(10, 'X');
-                    case '/' -> this.rolls[i] = new Roll((10 - this.rolls[i-1].value()), '/');
+                    case 'X' -> this.rolls[i] = new Roll(10, 'X', true, false);
+                    case '/' -> this.rolls[i] = new Roll((10 - this.rolls[i-1].value()), '/', false, true);
                     case '-' -> this.rolls[i] = new Roll(0, '-');
                     default -> this.rolls[i] = new Roll(Character.getNumericValue(rolls.charAt(i)), rolls.charAt(i));
                 }
