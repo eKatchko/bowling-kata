@@ -30,8 +30,27 @@ public class BowlingGame {
 
         for (int frameIndex = 0; frameIndex < this.frames.size(); frameIndex++) {
             Roll[] rolls = this.frames.get(frameIndex).getRolls();
-            for (int rollIndex = 0; rollIndex < rolls.length; rollIndex++) {
-                this.score += rolls[rollIndex].value();
+            for (Roll roll : rolls) {
+                this.score += roll.value();
+                if (roll.isSpare()) {
+                    try {
+                        this.score += this.frames.get(frameIndex + 1).getRolls()[0].value();
+                    } catch (IndexOutOfBoundsException ignored) {
+                    }
+                }
+                if (roll.isStrike()) {
+                    try {
+                        Roll[] nextRolls = this.frames.get(frameIndex + 1).getRolls();
+                        if (nextRolls.length > 1) {
+                            this.score += nextRolls[0].value();
+                            this.score += nextRolls[1].value();
+                        } else {
+                            this.score += nextRolls[0].value();
+                            this.score += this.frames.get(frameIndex + 2).getRolls()[0].value();
+                        }
+                    } catch (IndexOutOfBoundsException ignored) {
+                    }
+                }
             }
         }
 
