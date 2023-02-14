@@ -1,5 +1,6 @@
 package de.ekatchko.bowlingkata;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +14,14 @@ import java.util.ArrayList;
 public class GameTest {
     private BowlingGame bowlingGame;
 
+    @BeforeEach
+    void initNewBowlingGame() {
+        bowlingGame = new BowlingGame();
+    }
+
     @Test
     @DisplayName("Initialize a bowling game with 10 frames.")
     void initializeBowlingGame() {
-        bowlingGame = new BowlingGame();
         String framesString = "-- -- -- -- -- -- -- -- -- ---";
         bowlingGame.addFrames(framesString);
         ArrayList<Frame> frames = bowlingGame.getFrames();
@@ -27,7 +32,6 @@ public class GameTest {
     @Test
     @DisplayName("Initialize a bowling game with 5 frames.")
     void initializeBowlingGameWith5Frames() {
-        bowlingGame = new BowlingGame();
         String framesString = "-- -- -- -- --";
         bowlingGame.addFrames(framesString);
         ArrayList<Frame> frames = bowlingGame.getFrames();
@@ -38,7 +42,6 @@ public class GameTest {
     @Test
     @DisplayName("Initialize a bowling game with 5 frames and extend by 6 more frames. Expect 10.")
     void initializeBowlingGameWith5FramesAndExtend() {
-        bowlingGame = new BowlingGame();
         String framesString = "-- -- -- -- --";
         bowlingGame.addFrames(framesString);
         framesString = "-- -- -- -- -- ---";
@@ -51,7 +54,6 @@ public class GameTest {
     @Test
     @DisplayName("Initialize a bowling game with 10 frames and test for correct characters.")
     void initializeBowlingGameAndTestFramesCharacters() {
-        bowlingGame = new BowlingGame();
         String framesString = "?2 34 5/ X 6- -7 8/ 9/ -- XX1";
         bowlingGame.addFrames(framesString);
         ArrayList<Frame> frames = bowlingGame.getFrames();
@@ -73,7 +75,6 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with: no spare, no strike, no miss. 23 23 23 23 23 23 23 23 23 23- = 50.")
     void playBowlingGameWithScore50() {
-        bowlingGame = new BowlingGame();
         String framesString = "23 23 23 23 23 23 23 23 23 23-";
         bowlingGame.addFrames(framesString);
         int score = bowlingGame.computeScore();
@@ -84,7 +85,6 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with only strikes: X X X X X X X X X XXX = 300.")
     void playBowlingGameWithScore300() {
-        bowlingGame = new BowlingGame();
         String framesString = "X X X X X X X X X XXX";
         bowlingGame.addFrames(framesString);
         int score = bowlingGame.computeScore();
@@ -95,7 +95,6 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with only spares: 1/ 2/ 3/ 4/ 5/ 6/ 7/ 8/ 9/ 5/5 = 154.")
     void playBowlingGameWithScore154() {
-        bowlingGame = new BowlingGame();
         String framesString = "1/ 2/ 3/ 4/ 5/ 6/ 7/ 8/ 9/ 5/5";
         bowlingGame.addFrames(framesString);
         int score = bowlingGame.computeScore();
@@ -106,7 +105,6 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with only misses: -- -- -- -- -- -- -- -- -- --- = 0.")
     void playBowlingGameWithScore0() {
-        bowlingGame = new BowlingGame();
         String framesString = "-- -- -- -- -- -- -- -- -- ---";
         bowlingGame.addFrames(framesString);
         int score = bowlingGame.computeScore();
@@ -117,7 +115,6 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with strikes, spares and misses: 2/ X -- 3/ X 14 -3 54 5/ 8/2 = 112.")
     void playBowlingGameWithScore112() {
-        bowlingGame = new BowlingGame();
         String framesString = "2/ X -- 3/ X 14 -3 54 5/ 8/2";
         bowlingGame.addFrames(framesString);
         int score = bowlingGame.computeScore();
@@ -128,7 +125,6 @@ public class GameTest {
     @Test
     @DisplayName("Play an uncompleted game: 2/ X -- 3/ X 14 = 70.")
     void playUncompletedBowlingGameWithScore70() {
-        bowlingGame = new BowlingGame();
         String framesString = "2/ X -- 3/ X 14";
         bowlingGame.addFrames(framesString);
         int score = bowlingGame.computeScore();
@@ -139,7 +135,6 @@ public class GameTest {
     @Test
     @DisplayName("Play an uncompleted game: 2/ X -- 3/ X 14 = 70. Then finish and compute again: 2/ X -- 3/ X 14 -3 54 5/ 8/2 = 112.")
     void playUncompletedBowlingGameWithScore112() {
-        bowlingGame = new BowlingGame();
         String framesString = "2/ X -- 3/ X 14";
         bowlingGame.addFrames(framesString);
         framesString = "-3 54 5/ 8/2";
