@@ -11,6 +11,10 @@ public class BowlingGame {
         this.score = 0;
     }
 
+    public void addRoll(int pins) {
+
+    }
+
     public void addFrames(String frames) {
         String[] splitFrames = frames.split(" ");
         for (String splitFrame : splitFrames) {

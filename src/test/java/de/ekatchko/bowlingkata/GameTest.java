@@ -23,8 +23,9 @@ public class GameTest {
     @Test
     @DisplayName("Initialize a bowling game with 10 frames.")
     void initializeBowlingGame() {
-        String framesString = "-- -- -- -- -- -- -- -- -- ---";
-        bowlingGame.addFrames(framesString);
+        for (int i = 0; i < 20; i++) {
+            bowlingGame.addRoll(0);
+        }
         ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames.size()).isEqualTo(10);
@@ -33,8 +34,9 @@ public class GameTest {
     @Test
     @DisplayName("Initialize a bowling game with 5 frames.")
     void initializeBowlingGameWith5Frames() {
-        String framesString = "-- -- -- -- --";
-        bowlingGame.addFrames(framesString);
+        for (int i = 0; i < 10; i++) {
+            bowlingGame.addRoll(0);
+        }
         ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames.size()).isEqualTo(5);
@@ -43,10 +45,12 @@ public class GameTest {
     @Test
     @DisplayName("Initialize a bowling game with 5 frames and extend by 6 more frames. Expect 10.")
     void initializeBowlingGameWith5FramesAndExtend() {
-        String framesString = "-- -- -- -- --";
-        bowlingGame.addFrames(framesString);
-        framesString = "-- -- -- -- -- ---";
-        bowlingGame.addFrames(framesString);
+        for (int i = 0; i < 10; i++) {
+            bowlingGame.addRoll(0);
+        }
+        for (int i = 0; i < 20; i++) {
+            bowlingGame.addRoll(0);
+        }
         ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames.size()).isEqualTo(10);
@@ -55,8 +59,36 @@ public class GameTest {
     @Test
     @DisplayName("Initialize a bowling game with 10 frames and test for correct characters.")
     void initializeBowlingGameAndTestFramesCharacters() {
-        String framesString = "?2 34 5/ X 6- -7 8/ 9/ -- XX1";
-        bowlingGame.addFrames(framesString);
+        bowlingGame.addRoll(0);
+        bowlingGame.addRoll(2);
+
+        bowlingGame.addRoll(3);
+        bowlingGame.addRoll(4);
+
+        bowlingGame.addRoll(5);
+        bowlingGame.addRoll(5);
+
+        bowlingGame.addRoll(10);
+
+        bowlingGame.addRoll(6);
+        bowlingGame.addRoll(0);
+
+        bowlingGame.addRoll(0);
+        bowlingGame.addRoll(7);
+
+        bowlingGame.addRoll(8);
+        bowlingGame.addRoll(2);
+
+        bowlingGame.addRoll(9);
+        bowlingGame.addRoll(1);
+
+        bowlingGame.addRoll(0);
+        bowlingGame.addRoll(0);
+
+        bowlingGame.addRoll(10);
+        bowlingGame.addRoll(10);
+        bowlingGame.addRoll(1);
+
         ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames).satisfiesExactly(
@@ -100,8 +132,10 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with: no spare, no strike, no miss. 23 23 23 23 23 23 23 23 23 23- = 50.")
     void playBowlingGameWithScore50() {
-        String framesString = "23 23 23 23 23 23 23 23 23 23-";
-        bowlingGame.addFrames(framesString);
+        for (int i = 0; i < 10; i++) {
+            bowlingGame.addRoll(2);
+            bowlingGame.addRoll(3);
+        }
         int score = bowlingGame.computeScore();
 
         assertThat(score).isEqualTo(50);
@@ -110,8 +144,9 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with only strikes: X X X X X X X X X XXX = 300.")
     void playBowlingGameWithScore300() {
-        String framesString = "X X X X X X X X X XXX";
-        bowlingGame.addFrames(framesString);
+        for (int i = 0; i < 12; i++) {
+            bowlingGame.addRoll(10);
+        }
         int score = bowlingGame.computeScore();
 
         assertThat(score).isEqualTo(300);
@@ -120,8 +155,13 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with only spares: 1/ 2/ 3/ 4/ 5/ 6/ 7/ 8/ 9/ 5/5 = 154.")
     void playBowlingGameWithScore154() {
-        String framesString = "1/ 2/ 3/ 4/ 5/ 6/ 7/ 8/ 9/ 5/5";
-        bowlingGame.addFrames(framesString);
+        for (int i = 0; i < 9; i++) {
+            bowlingGame.addRoll(4);
+            bowlingGame.addRoll(6);
+        }
+        bowlingGame.addRoll(5);
+        bowlingGame.addRoll(5);
+        bowlingGame.addRoll(5);
         int score = bowlingGame.computeScore();
 
         assertThat(score).isEqualTo(154);
@@ -130,8 +170,9 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with only misses: -- -- -- -- -- -- -- -- -- --- = 0.")
     void playBowlingGameWithScore0() {
-        String framesString = "-- -- -- -- -- -- -- -- -- ---";
-        bowlingGame.addFrames(framesString);
+        for (int i = 0; i < 20; i++) {
+            bowlingGame.addRoll(0);
+        }
         int score = bowlingGame.computeScore();
 
         assertThat(score).isEqualTo(0);
@@ -140,8 +181,35 @@ public class GameTest {
     @Test
     @DisplayName("Play a game with strikes, spares and misses: 2/ X -- 3/ X 14 -3 54 5/ 8/2 = 112.")
     void playBowlingGameWithScore112() {
-        String framesString = "2/ X -- 3/ X 14 -3 54 5/ 8/2";
-        bowlingGame.addFrames(framesString);
+        bowlingGame.addRoll(2);
+        bowlingGame.addRoll(8);
+
+        bowlingGame.addRoll(10);
+
+        bowlingGame.addRoll(0);
+        bowlingGame.addRoll(0);
+
+        bowlingGame.addRoll(3);
+        bowlingGame.addRoll(7);
+
+        bowlingGame.addRoll(10);
+
+        bowlingGame.addRoll(1);
+        bowlingGame.addRoll(4);
+
+        bowlingGame.addRoll(0);
+        bowlingGame.addRoll(3);
+
+        bowlingGame.addRoll(5);
+        bowlingGame.addRoll(4);
+
+        bowlingGame.addRoll(5);
+        bowlingGame.addRoll(5);
+
+        bowlingGame.addRoll(8);
+        bowlingGame.addRoll(2);
+        bowlingGame.addRoll(2);
+
         int score = bowlingGame.computeScore();
 
         assertThat(score).isEqualTo(112);
@@ -150,23 +218,26 @@ public class GameTest {
     @Test
     @DisplayName("Play an uncompleted game: 2/ X -- 3/ X 14 = 70.")
     void playUncompletedBowlingGameWithScore70() {
-        String framesString = "2/ X -- 3/ X 14";
-        bowlingGame.addFrames(framesString);
+        bowlingGame.addRoll(2);
+        bowlingGame.addRoll(8);
+
+        bowlingGame.addRoll(10);
+
+        bowlingGame.addRoll(0);
+        bowlingGame.addRoll(0);
+
+        bowlingGame.addRoll(3);
+        bowlingGame.addRoll(7);
+
+        bowlingGame.addRoll(10);
+
+        bowlingGame.addRoll(1);
+        bowlingGame.addRoll(4);
+
         int score = bowlingGame.computeScore();
 
         assertThat(score).isEqualTo(70);
     }
 
-    @Test
-    @DisplayName("Play an uncompleted game: 2/ X -- 3/ X 14 = 70. Then finish and compute again: 2/ X -- 3/ X 14 -3 54 5/ 8/2 = 112.")
-    void playUncompletedBowlingGameWithScore112() {
-        String framesString = "2/ X -- 3/ X 14";
-        bowlingGame.addFrames(framesString);
-        framesString = "-3 54 5/ 8/2";
-        bowlingGame.addFrames(framesString);
-        int score = bowlingGame.computeScore();
-
-        assertThat(score).isEqualTo(112);
-    }
 
 }

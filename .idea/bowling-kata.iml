@@ -21,13 +21,13 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.9.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.24.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy:1.12.21" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.plugins:maven-surefire-plugin:maven-plugin:3.0.0-M8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.surefire:maven-surefire-common:3.0.0-M8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-api:3.0.0-M8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-logger-api:3.0.0-M8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-extensions-api:3.0.0-M8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-booter:3.0.0-M8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-extensions-spi:3.0.0-M8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.plugins:maven-surefire-plugin:maven-plugin:3.0.0-M9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.surefire:maven-surefire-common:3.0.0-M9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-api:3.0.0-M9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-logger-api:3.0.0-M9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-extensions-api:3.0.0-M9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-booter:3.0.0-M9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-extensions-spi:3.0.0-M9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-common-artifact-filters:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.0.10" level="project" />
@@ -61,6 +61,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-java:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:9.4" level="project" />
     <orderEntry type="library" name="Maven: com.thoughtworks.qdox:qdox:2.0.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-shared-utils:3.0.0-M8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.surefire:surefire-shared-utils:3.0.0-M9" level="project" />
   </component>
 </module>
