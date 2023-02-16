@@ -48,7 +48,7 @@ public class GameTest {
         for (int i = 0; i < 10; i++) {
             bowlingGame.addRoll(0);
         }
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             bowlingGame.addRoll(0);
         }
         ArrayList<Frame> frames = bowlingGame.getFrames();
@@ -92,34 +92,34 @@ public class GameTest {
         ArrayList<Frame> frames = bowlingGame.getFrames();
 
         assertThat(frames).satisfiesExactly(
-                frame1 -> assertThat(frame1.getRolls()).isEqualTo(
+                frame1 -> assertThat(frame1.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(0, '-'), new Roll(2, '2')}
                 ),
-                frame2 -> assertThat(frame2.getRolls()).isEqualTo(
+                frame2 -> assertThat(frame2.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(3, '3'), new Roll(4, '4')}
                 ),
-                frame3 -> assertThat(frame3.getRolls()).isEqualTo(
+                frame3 -> assertThat(frame3.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(5, '5'), new Roll(5, '/', false, true)}
                 ),
-                frame4 -> assertThat(frame4.getRolls()).isEqualTo(
+                frame4 -> assertThat(frame4.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(10, 'X', true, false)}
                 ),
-                frame5 -> assertThat(frame5.getRolls()).isEqualTo(
+                frame5 -> assertThat(frame5.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(6, '6'), new Roll(0, '-')}
                 ),
-                frame6 -> assertThat(frame6.getRolls()).isEqualTo(
+                frame6 -> assertThat(frame6.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(0, '-'), new Roll(7, '7')}
                 ),
-                frame7 -> assertThat(frame7.getRolls()).isEqualTo(
+                frame7 -> assertThat(frame7.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(8, '8'), new Roll(2, '/', false, true)}
                 ),
-                frame8 -> assertThat(frame8.getRolls()).isEqualTo(
+                frame8 -> assertThat(frame8.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(9, '9'), new Roll(1, '/', false, true)}
                         ),
-                frame9 -> assertThat(frame9.getRolls()).isEqualTo(
+                frame9 -> assertThat(frame9.getRolls().toArray()).isEqualTo(
                         new Roll[]{new Roll(0, '-'), new Roll(0, '-')}
                 ),
-                frame10 -> assertThat(frame10.getRolls()).isEqualTo(
+                frame10 -> assertThat(frame10.getRolls().toArray()).isEqualTo(
                         new Roll[]{
                                 new Roll(10, 'X', true, false),
                                 new Roll(10, 'X', true, false),
@@ -153,8 +153,8 @@ public class GameTest {
     }
 
     @Test
-    @DisplayName("Play a game with only spares: 1/ 2/ 3/ 4/ 5/ 6/ 7/ 8/ 9/ 5/5 = 154.")
-    void playBowlingGameWithScore154() {
+    @DisplayName("Play a game with only spares: 4/ 4/ 4/ 4/ 4/ 4/ 4/ 4/ 4/ 5/5 = 142.")
+    void playBowlingGameWithScore142() {
         for (int i = 0; i < 9; i++) {
             bowlingGame.addRoll(4);
             bowlingGame.addRoll(6);
@@ -164,7 +164,7 @@ public class GameTest {
         bowlingGame.addRoll(5);
         int score = bowlingGame.computeScore();
 
-        assertThat(score).isEqualTo(154);
+        assertThat(score).isEqualTo(142);
     }
 
     @Test

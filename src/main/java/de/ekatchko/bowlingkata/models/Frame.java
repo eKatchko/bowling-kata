@@ -1,44 +1,101 @@
 package de.ekatchko.bowlingkata.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Frame {
-    private static final HashSet<Character> allowedRolls = new HashSet<>();
+    private final ArrayList<Roll> rolls = new ArrayList<>();
+    private final boolean lastFrame;
+    private boolean isCompleted = false;
 
-    static{
-        allowedRolls.add('1');
-        allowedRolls.add('2');
-        allowedRolls.add('3');
-        allowedRolls.add('4');
-        allowedRolls.add('5');
-        allowedRolls.add('6');
-        allowedRolls.add('7');
-        allowedRolls.add('8');
-        allowedRolls.add('9');
-        allowedRolls.add('X');
-        allowedRolls.add('/');
-        allowedRolls.add('-');
+    public Frame(boolean lastFrame) {
+        this.lastFrame = lastFrame;
     }
 
-    private final Roll[] rolls;
+    public ArrayList<Roll> getRolls() {
+        return this.rolls;
+    }
 
-    public Frame(String rolls) {
-        this.rolls = new Roll[rolls.length()];
-        for (int i = 0; i < rolls.length(); i++) {
-            if (allowedRolls.contains(rolls.charAt(i))) {
-                switch (rolls.charAt(i)) {
-                    case 'X' -> this.rolls[i] = new Roll(10, 'X', true, false);
-                    case '/' -> this.rolls[i] = new Roll((10 - this.rolls[i-1].value()), '/', false, true);
-                    case '-' -> this.rolls[i] = new Roll(0, '-');
-                    default -> this.rolls[i] = new Roll(Character.getNumericValue(rolls.charAt(i)), rolls.charAt(i));
+    public void addRoll(int pins) {
+        Roll defaultRoll = new Roll(pins, Character.forDigit(pins, 10));
+        if (!this.lastFrame) {
+            addRollToFrame(pins, defaultRoll);
+        } else {
+            addRollToLastFrame(pins, defaultRoll);
+        }
+    }
+
+    private void addRollToFrame(int pins, Roll defaultRoll) {
+        if (this.rolls.isEmpty()) {
+            switch (pins) {
+                case 10 -> {
+                    isCompleted = true;
+                    rolls.add(new Roll(10, 'X', true, false));
                 }
-            } else {
-                this.rolls[i] = new Roll(0, '-');
+                case 0 -> rolls.add(new Roll(0, '-'));
+                default -> rolls.add(defaultRoll);
+            }
+        } else {
+            isCompleted = true;
+            switch (pins) {
+                case 10 -> rolls.add(new Roll(10, '/', false, true));
+                case 0 -> rolls.add(new Roll(0, '-'));
+                default -> {
+                    if (rolls.get(0).value() + pins == 10) {
+                        rolls.add(new Roll(pins, '/', false, true));
+                    } else {
+                        rolls.add(defaultRoll);
+                    }
+                }
             }
         }
     }
 
-    public Roll[] getRolls() {
-        return this.rolls;
+    private void addRollToLastFrame(int pins, Roll defaultRoll) {
+        if (rolls.isEmpty()) {
+            switch (pins) {
+                case 10 -> rolls.add(new Roll(10, 'X', true, false));
+                case 0 -> rolls.add(new Roll(0, '-'));
+                default -> rolls.add(defaultRoll);
+            }
+        } else if (rolls.size() == 1) {
+            switch (pins) {
+                case 10 -> {
+                    if (rolls.get(0).isStrike()) {
+                        rolls.add(new Roll(10, 'X', true, false));
+                    } else {
+                        rolls.add(new Roll(10, '/', false, true));
+                    }
+                }
+                case 0 -> rolls.add(new Roll(0, '-'));
+                default -> {
+                    if (rolls.get(0).value() + pins == 10) {
+                        rolls.add(new Roll(pins, '/', false, true));
+                    } else {
+                        rolls.add(defaultRoll);
+                    }
+                }
+            }
+        } else {
+            isCompleted = true;
+            switch (pins) {
+                case 10 -> rolls.add(new Roll(10, 'X', true, false));
+                case 0 -> rolls.add(new Roll(0, '-'));
+                default -> rolls.add(defaultRoll);
+            }
+        }
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder rollsStringBuilder = new StringBuilder();
+        for (Roll roll: rolls) {
+            rollsStringBuilder.append(roll.representation());
+        }
+        return rollsStringBuilder.toString();
     }
 }
